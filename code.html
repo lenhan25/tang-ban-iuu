@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)https://tunkhanhdev.github.io/ndieu-love/ -->
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Tặng Ngọc Diệu</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #e68a9e; /* Hồng tối hơn */
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Hiệu ứng trái tim */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff4d88;
+      transform: rotate(45deg);
+      animation: float 5s linear infinite;
+      opacity: 0.8;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff4d88;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.5) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2) rotate(45deg); opacity: 0; }
+    }
+
+    /* Hộp quà */
+    #giftBox {
+      width: 120px;
+      height: 120px;
+      background: #ff4da6;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255,0,150,0.8);
+      transition: transform 0.3s;
+      z-index: 2;
+    }
+    #giftBox:hover { transform: scale(1.1); }
+    #giftBox::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 120px;
+      background: white;
+    }
+    #giftBox::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 120px;
+      height: 30px;
+      background: white;
+    }
+
+    /* Khung chữ */
+    #message {
+      display: none;
+      text-align: center;
+      font-size: 22px;
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #ff99cc, 0 0 30px #ff66aa;
+      padding: 20px;
+      max-width: 80%;
+      background: rgba(255,0,100,0.3);
+      border-radius: 15px;
+      z-index: 2;
+    }
+
+    /* Chữ chạy */
+    .floating-text {
+      position: absolute;
+      white-space: nowrap;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #ff99cc, 0 0 30px #ff66aa;
+      opacity: 0.9;
+      animation: move linear infinite;
+    }
+    @keyframes move {
+      from { transform: translateX(100vw); }
+      to { transform: translateX(-100vw); }
+    }
+  </style>
+<style>.--savior-overlay-transform-reset {
+  transform: none !important;
+}
+.--savior-overlay-z-index-top {
+  z-index: 2147483643 !important;
+}
+.--savior-overlay-position-relative {
+  position: relative;
+}
+.--savior-overlay-position-static {
+  position: static !important;
+}
+.--savior-overlay-overflow-hidden {
+  overflow: hidden !important;
+}
+.--savior-overlay-overflow-x-visible {
+  overflow-x: visible !important;
+}
+.--savior-overlay-overflow-y-visible {
+  overflow-y: visible !important;
+}
+.--savior-overlay-z-index-reset {
+  z-index: auto !important;
+}
+.--savior-overlay-display-none {
+  display: none !important;
+}
+.--savior-overlay-clearfix {
+  clear: both;
+}
+.--savior-overlay-reset-filter {
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+.--savior-tooltip-host {
+  z-index: 9999;
+  position: absolute;
+  top: 0;
+}
+/*Override css styles for Twitch.tv*/
+main.--savior-overlay-z-index-reset {
+  z-index: auto !important;
+}
+.modal__backdrop.--savior-overlay-z-index-reset {
+  position: static !important;
+}
+main.--savior-overlay-z-index-top {
+  z-index: auto !important;
+}
+main.--savior-overlay-z-index-top .channel-root__player-container + div,
+main.--savior-overlay-z-index-top .video-player-hosting-ui__container + div {
+  opacity: 0.1;
+}
+/*Dirty hack for facebook big video page e.g: https://www.facebook.com/abc/videos/...*/
+.--savior-backdrop {
+  position: fixed !important;
+  z-index: 2147483642 !important;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw !important;
+  background-color: rgba(0,0,0,0.9);
+}
+.--savior-overlay-twitter-video-player {
+  position: fixed;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+}
+.--savior-overlay-z-index-reset [class*="DivSideNavContainer"],
+.--savior-overlay-z-index-reset [class*="DivHeaderContainer"],
+.--savior-overlay-z-index-reset [class*="DivBottomContainer"],
+.--savior-overlay-z-index-reset [class*="DivCategoryListWrapper"],
+.--savior-overlay-z-index-reset [data-testid="sidebarColumn"],
+.--savior-overlay-z-index-reset header[role="banner"],
+.--savior-overlay-z-index-reset [data-testid="cellInnerDiv"]:not(.--savior-overlay-z-index-reset),
+.--savior-overlay-z-index-reset [aria-label="Home timeline"]>div:first-child,
+.--savior-overlay-z-index-reset [aria-label="Home timeline"]>div:nth-child(3) {
+  z-index: -1 !important;
+}
+.--savior-overlay-z-index-reset [data-testid="cellInnerDiv"] .--savior-backdrop+div {
+  z-index: 2147483643 !important;
+}
+.--savior-overlay-z-index-reset [data-testid="primaryColumn"]>[aria-label="Home timeline"] {
+  z-index: 0 !important;
+}
+.--savior-overlay-z-index-reset#mtLayer,
+.--savior-overlay-z-index-reset.media-layer {
+  z-index: 3000 !important;
+}
+.--savior-overlay-position-relative [class*="SecBar_secBar_"],
+.--savior-overlay-position-relative .woo-box-flex [class*="Frame_top_"] {
+  z-index: 0 !important;
+}
+.--savior-overlay-position-relative .vue-recycle-scroller__item-view:not(.--savior-overlay-z-index-reset),
+.--savior-overlay-position-relative .woo-panel-main[class*="BackTop_main_"],
+.--savior-overlay-position-relative [class*="Main_side_"] {
+  z-index: -1 !important;
+}
+/* Fix conflict css with zingmp3 */
+.zm-video-modal.--savior-overlay-z-index-reset {
+  position: absolute;
+}
+/* Dirty hack for xvideos99 */
+#page #main.--savior-overlay-z-index-reset {
+  z-index: auto !important;
+}
+/* Overlay for ok.ru */
+#vp_w.--savior-overlay-z-index-reset.media-layer.media-layer__video {
+  overflow-y: hidden;
+  z-index: 2147483643 !important;
+}
+/* Fix missing controller for tv.naver.com */
+.--savior-overlay-z-index-top.rmc_controller,
+.--savior-overlay-z-index-top.rmc_setting_intro,
+.--savior-overlay-z-index-top.rmc_highlight,
+.--savior-overlay-z-index-top.rmc_control_settings {
+  z-index: 2147483644 !important;
+}
+/* Dirty hack for douyi.com */
+.swiper-wrapper.--savior-overlay-z-index-reset .swiper-slide:not(.swiper-slide-active),
+.swiper-wrapper.--savior-overlay-transform-reset .swiper-slide:not(.swiper-slide-active) {
+  display: none;
+}
+.videoWrap + div > div {
+  pointer-events: unset;
+}
+/* Dirty hack for fpt.ai */
+.mfp-wrap.--savior-overlay-z-index-top {
+  position: relative;
+}
+.mfp-wrap.--savior-overlay-z-index-top .mfp-close {
+  display: none;
+}
+.mfp-wrap.--savior-overlay-z-index-top .mfp-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+section.--savior-overlay-z-index-reset>main[role="main"].--savior-overlay-z-index-reset + nav {
+  z-index: -1 !important;
+}
+section.--savior-overlay-z-index-reset>main[role="main"].--savior-overlay-z-index-reset section.--savior-overlay-z-index-reset div.--savior-overlay-z-index-reset ~ div {
+  position: relative;
+}
+.watching-movie #video-player.--savior-overlay-z-index-top {
+  z-index: 2147483644 !important;
+}
+div[class^="tiktok"].--savior-overlay-z-index-reset {
+  z-index: 2147483644 !important;
+}
+.--savior-lightoff-fix section:not(:has([class*="--savior-overlay-"])),
+.--savior-lightoff-fix section.section_video ~ section {
+  z-index: -1;
+  position: relative;
+}
+.--savior-lightoff-fix header,
+.--savior-lightoff-fix footer,
+.--savior-lightoff-fix .top-header,
+.--savior-lightoff-fix .swiper-container,
+.--savior-lightoff-fix #to_top,
+.--savior-lightoff-fix #button-adblock {
+  z-index: -1 !important;
+}
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+</style></head>
+<body>
+
+  <!-- Hộp quà -->
+  <div id="giftBox" style="display: none;"></div>
+
+  <!-- Tin nhắn -->
+  <div id="message" style="display: none;">
+    <p>
+      Diệu ơi mình là <b>TunKhanh</b> đây 💖<br>
+      Lúc trước mình tưởng chỉ rela đùa vui thôi nhưng dần mình yêu bạn mất rồi 🥺<br>
+      Mình không biết bạn có thích mình không nhưng mình mong bạn cho mình cơ hội được yêu bạn &gt;&lt; 💕
+    </p>
+  </div>
+
+  <script>
+    const giftBox = document.getElementById("giftBox");
+    const message = document.getElementById("message");
+    const body = document.body;
+
+    // Tạo tim bay
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+      body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 200);
+
+    // Khi click hộp quà
+    giftBox.onclick = () => {
+      giftBox.style.display = "none";
+      message.style.display = "block";
+
+      // Sau 3s thì tắt message và bắt đầu spam chữ
+      setTimeout(() => {
+        message.style.display = "none";
+        startFloatingText();
+      }, 3000);
+    };
+
+    // Hiện chữ bay random
+    function startFloatingText() {
+      const texts = [
+        "❤️ tunkhanh lov ndieu ❤️",
+        "❤️ ndieu xink gai dthw ❤️"
+      ];
+      setInterval(() => {
+        const span = document.createElement("div");
+        span.className = "floating-text";
+        span.textContent = texts[Math.floor(Math.random() * texts.length)];
+        span.style.top = Math.random() * 100 + "vh";
+        span.style.left = "100vw";
+        span.style.fontSize = (20 + Math.random() * 10) + "px";
+        span.style.animationDuration = (2 + Math.random() * 2) + "s";
+        body.appendChild(span);
+        setTimeout(() => span.remove(), 6000);
+      }, 300); // spam nhanh
+    }
+  </script>
+
+
+<div class="floating-text" style="top: 18.9855vh; left: 100vw; font-size: 27.8568px; animation-duration: 3.57952s;">❤️ ndieu xink gai dthw ❤️</div><div class="floating-text" style="top: 56.1561vh; left: 100vw; font-size: 27.3962px; animation-duration: 2.02483s;">❤️ tunkhanh lov ndieu ❤️</div><div class="floating-text" style="top: 87.0671vh; left: 100vw; font-size: 24.7267px; animation-duration: 2.23164s;">❤️ ndieu xink gai dthw ❤️</div><div class="floating-text" style="top: 28.7944vh; left: 100vw; font-size: 20.1291px; animation-duration: 2.78584s;">❤️ tunkhanh lov ndieu ❤️</div><div class="heart" style="left: 27.763vw; animation-duration: 3.89973s;"></div><div class="heart" style="left: 97.4547vw; animation-duration: 4.62069s;"></div><div class="floating-text" style="top: 37.9112vh; left: 100vw; font-size: 29.8948px; animation-duration: 2.89278s;">❤️ tunkhanh lov ndieu ❤️</div><div class="heart" style="left: 86.551vw; animation-duration: 3.18222s;"></div><div class="floating-text" style="top: 45.4388vh; left: 100vw; font-size: 27.6395px; animation-duration: 3.66296s;">❤️ tunkhanh lov ndieu ❤️</div><div class="heart" style="left: 80.5016vw; animation-duration: 3.98029s;"></div><div class="heart" style="left: 60.391vw; animation-duration: 4.36163s;"></div><div class="floating-text" style="top: 3.47456vh; left: 100vw; font-size: 28.9808px; animation-duration: 3.77181s;">❤️ ndieu xink gai dthw ❤️</div><div class="heart" style="left: 78.5539vw; animation-duration: 3.51685s;"></div><div class="floating-text" style="top: 81.7949vh; left: 100vw; font-size: 25.2522px; animation-duration: 2.98854s;">❤️ tunkhanh lov ndieu ❤️</div><div class="heart" style="left: 21.3075vw; animation-duration: 4.43188s;"></div><div class="heart" style="left: 76.8797vw; animation-duration: 3.04233s;"></div><div class="floating-text" style="top: 77.4275vh; left: 100vw; font-size: 26.7019px; animation-duration: 2.94414s;">❤️ ndieu xink gai dthw ❤️</div><div class="heart" style="left: 11.5019vw; animation-duration: 3.17498s;"></div><div class="floating-text" style="top: 81.0593vh; left: 100vw; font-size: 22.0088px; animation-duration: 3.99812s;">❤️ tunkhanh lov ndieu ❤️</div><div class="heart" style="left: 8.15495vw; animation-duration: 3.54223s;"></div><div class="heart" style="left: 94.73vw; animation-duration: 3.40791s;"></div><div class="floating-text" style="top: 87.313vh; left: 100vw; font-size: 25.3133px; animation-duration: 3.04343s;">❤️ ndieu xink gai dthw ❤️</div><div class="heart" style="left: 56.256vw; animation-duration: 4.22801s;"></div><div class="floating-text" style="top: 1.45016vh; left: 100vw; font-size: 26.7487px; animation-duration: 3.61783s;">❤️ tunkhanh lov ndieu ❤️</div><div class="heart" style="left: 4.95296vw; animation-duration: 3.53301s;"></div><div class="heart" style="left: 85.77vw; animation-duration: 4.1998s;"></div><div class="floating-text" style="top: 13.076vh; left: 100vw; font-size: 24.5199px; animation-duration: 3.46568s;">❤️ tunkhanh lov ndieu ❤️</div><div class="heart" style="left: 40.6041vw; animation-duration: 3.83194s;"></div><div class="floating-text" style="top: 28.4071vh; left: 100vw; font-size: 21.3381px; animation-duration: 3.61549s;">❤️ ndieu xink gai dthw ❤️</div><div class="heart" style="left: 1.7012vw; animation-duration: 3.3243s;"></div><div class="heart" style="left: 9.84522vw; animation-duration: 3.89011s;"></div><div class="floating-text" style="top: 72.7909vh; left: 100vw; font-size: 24.485px; animation-duration: 3.89472s;">❤️ ndieu xink gai dthw ❤️</div><div class="heart" style="left: 11.9723vw; animation-duration: 4.50667s;"></div><div class="floating-text" style="top: 78.3754vh; left: 100vw; font-size: 23.2883px; animation-duration: 3.63321s;">❤️ tunkhanh lov ndieu ❤️</div><div class="heart" style="left: 10.3954vw; animation-duration: 3.091s;"></div><div class="heart" style="left: 34.0652vw; animation-duration: 4.70591s;"></div><div class="floating-text" style="top: 12.0902vh; left: 100vw; font-size: 27.8128px; animation-duration: 3.30736s;">❤️ tunkhanh lov ndieu ❤️</div><div class="heart" style="left: 4.37628vw; animation-duration: 4.50681s;"></div><div class="floating-text" style="top: 50.1663vh; left: 100vw; font-size: 25.4949px; animation-duration: 3.53401s;">❤️ ndieu xink gai dthw ❤️</div><div class="heart" style="left: 87.1625vw; animation-duration: 4.94491s;"></div><div class="heart" style="left: 5.04018vw; animation-duration: 4.50967s;"></div><div class="floating-text" style="top: 9.01405vh; left: 100vw; font-size: 26.4266px; animation-duration: 3.67635s;">❤️ tunkhanh lov ndieu ❤️</div><div class="heart" style="left: 63.137vw; animation-duration: 4.43651s;"></div><div class="floating-text" style="top: 65.5834vh; left: 100vw; font-size: 23.0157px; animation-duration: 2.76922s;">❤️ tunkhanh lov ndieu ❤️</div><div class="heart" style="left: 75.0248vw; animation-duration: 3.30601s;"></div></body><en2vi-host class="corom-element" version="3" style="all: initial; position: absolute; top: 0; left: 0; right: 0; height: 0; margin: 0; text-align: left; z-index: 10000000000; pointer-events: none; border: none; display: block"><template shadowrootmode="open"><style>@import "chrome-extension://gfgbmghkdjckppeomloefmbphdfmokgd/css/common.css";
+@import "chrome-extension://gfgbmghkdjckppeomloefmbphdfmokgd/css/style.css";</style><style id="svelte-1f4zgot">.toast-container.svelte-1f4zgot{position:fixed;pointer-events:none;width:0;height:0;display:flex;flex-direction:column-reverse;align-items:center;z-index:1000;bottom:0;padding:16px;gap:8px}.show.svelte-1f4zgot{width:100%;height:100%}</style>   <div class="toast-container svelte-1f4zgot"></div></template></en2vi-host><savior-host style="all: unset; position: absolute; top: 0; left: 0; z-index: 99999999999999; display: block !important; overflow: unset"><template shadowrootmode="open"><style>@import "chrome-extension://jdfkmiabjpfjacifcmihfdjhpnjpiick/css/content-script.css";
+</style><div class="body"><div class="turn-lights-overlay"></div><toasts id="toasts-container"></toasts></div></template></savior-host></html>
